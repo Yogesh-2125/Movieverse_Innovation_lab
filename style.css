@@ -1,0 +1,434 @@
+/* --- CSS Variables for easy theme management --- */
+:root {
+    --color-background: #141414;
+    --color-surface: #1f1f1f;
+    --color-primary: #e50914; /* Netflix Red */
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #aaaaaa;
+    --border-radius: 8px;
+}
+
+/* --- Global Resets & Body Styling --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-image: url("./the_netflix_login_background__canada__2024___by_logofeveryt_dh0w8qv.jpg");
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+body::before {
+    content: '';
+    position: fixed; /* Stays in place */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Black with 80% opacity */
+    background-color: rgba(0, 0, 0, 0.736); 
+    
+    /* Sits behind the content (z-index: -1) 
+       but in front of the body's image */
+    z-index: -1; 
+}
+
+main {
+    padding: 2rem 4%;
+    flex-grow: 1;
+}
+
+h1, h2 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+/* --- Header & Search Bar Styling --- */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 4%;
+    background-color: var(--color-background);
+    border-bottom: 1px solid var(--color-surface);
+}
+
+.main-header h1 {
+    color: var(--color-primary);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.nav-link {
+    color: #e50914; /* Grey color */
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 700;
+    transition: color 0.3s;
+    padding: 0.5rem;
+    margin-left: 1.5rem;
+}
+
+.nav-link:hover {
+    color: white; /* White color on hover */
+}
+
+/* --- Highlights the link of the page you are on --- */
+.nav-link.active {
+    color:#e50914; /* White color */
+    font-weight: 700;
+}
+
+.nav-link.active:hover {
+    color: white; /* White color on hover */
+}
+
+.search-box {
+    display: flex;
+}
+
+.search-box input {
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-surface);
+    background-color: var(--color-surface);
+    color: var(--color-text-primary);
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+    outline: none;
+    transition: background-color 0.3s;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.search-box input:focus {
+    background-color: #333;
+}
+
+.search-box button {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    background-color: var(--color-primary);
+    color: var(--color-text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    transition: background-color 0.3s;
+}
+
+.search-box button:hover {
+    background-color: #f6121d;
+}
+
+/* --- "Top Picks" Row (Netflix Style) --- */
+.movie-row {
+    margin-bottom: 2rem;
+}
+
+.movie-container {
+    display: flex;
+    overflow-x: auto; /* This creates the horizontal scroll */
+    overflow-y: hidden;
+    padding-bottom: 1.5rem; /* Space for scrollbar */
+    gap: 1rem;
+}
+
+/* Hide scrollbar for a cleaner look */
+.movie-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+.movie-container {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+/* --- "Search Results" Grid --- */
+.movie-grid-section {
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-surface);
+}
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.placeholder-text, .error-message {
+    font-size: 1.2rem;
+    color: var(--color-text-secondary);
+    grid-column: 1 / -1; /* Make it span all columns */
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* --- Shared Movie Card Styling (Used by both sections) --- */
+.movie-card {
+    background-color: var(--color-surface);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--color-text-primary);
+    display: block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+/* --- Animation --- */
+.movie-card:hover {
+    transform: scale(1.05); /* Animation you requested */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.movie-card img {
+    width: 100%;
+    height: 300px; /* Fixed height for consistency */
+    object-fit: cover; /* Ensures poster fills space without distortion */
+    display: block;
+    background-color: #333; /* Placeholder color */
+}
+
+.movie-card-info {
+    padding: 1rem;
+}
+
+.movie-card-info h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adds '...' if title is too long */
+}
+
+.movie-card-info p {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid var(--color-surface);
+    color: var(--color-text-secondary);
+    background-color: var(--color-surface);
+}
+
+footer a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+/* --- Wishlist Button Styling (UPDATED for index.html) --- */
+
+.movie-card {
+    position: relative; 
+}
+
+.btn-wishlist {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.6); /* Darker, more subtle background */
+    color: var(--color-text-secondary); /* Greyed out by default */
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem; /* Size for heart icon */
+    line-height: 40px; /* Center icon vertically */
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s ease-out; /* Add transform for animation */
+    z-index: 2; /* Ensure it's above the image */
+    display: flex; /* Use flexbox to perfectly center icon */
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-wishlist:hover {
+    background-color: rgba(229, 9, 20, 0.8); /* Red on hover */
+    color: white;
+    transform: scale(1.1); /* Slight bounce on hover */
+}
+
+/* Active state: Heart is filled and red */
+.btn-wishlist.active {
+    background-color: var(--color-primary); /* Solid red */
+    color: white;
+}
+
+/* Animation for click feedback */
+.btn-wishlist:active {
+    transform: scale(0.9); /* Shrink slightly on click */
+}
+
+
+/* --- Wishlist "Remove" Button Styling (UPDATED for wishlist.html) --- */
+.btn-wishlist-remove {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(229, 9, 20, 0.8); /* Red, slightly transparent */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.4rem; /* Size for 'x' icon */
+    line-height: 40px; /* Fine-tune vertical alignment */
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s ease-out;
+    z-index: 2;
+    display: flex; /* Use flexbox to perfectly center icon */
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-wishlist-remove:hover {
+    background-color: var(--color-primary); /* Solid red on hover */
+    transform: scale(1.1);
+}
+.btn-wishlist-remove:active {
+    transform: scale(0.9);
+}
+
+/* --- Login Page Styling --- */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 2rem;
+    flex-grow: 1; /* Helps push footer down */
+}
+
+.login-form {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 4rem;
+    border-radius: var(--border-radius);
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.login-form h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-secondary);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    background-color: #333;
+    border: 1px solid #555;
+    border-radius: var(--border-radius);
+    color: var(--color-text-primary);
+}
+
+.btn-login {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background-color: var(--color-primary);
+    color: var(--color-text-primary);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    margin-top: 1.5rem;
+    transition: background-color 0.3s;
+}
+
+.btn-login:hover {
+    background-color: #f6121d;
+}
+
+.login-error-message {
+    color: #e87c03; /* Netflix orange for errors */
+    margin-bottom: 1rem;
+}
+
+.login-help {
+    margin-top: 2rem;
+    color: var(--color-text-secondary);
+}
+
+.login-help a {
+    color: var(--color-text-primary);
+    text-decoration: none;
+}
+
+.login-help a:hover {
+    text-decoration: underline;
+}
+
+/* --- Auth Links in Header --- */
+.auth-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-left: 1.5rem;
+}
+
+/* --- Find this rule: --- */
+#logout-btn, .user-email {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    font-family: inherit;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 0;
+}
+
+/* --- And this rule: --- */
+.user-email {
+    cursor: default;
+    color: var(--color-text-primary);
+}
+
+
+/* --- REPLACE THEM WITH THESE TWO: --- */
+#logout-btn, .user-greeting {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    font-family: inherit;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 0;
+}
+
+.user-greeting {
+    cursor: default;
+    color: var(--color-text-primary);
+    font-weight: 700; /* Make the name bold */
+}

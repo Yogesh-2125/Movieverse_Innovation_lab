@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movieverse</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="./script.js" defer></script>
+</head>
+<body>
+
+    <header class="main-header">
+        <h1>Movieverse</h1>
+        <a href="wishlist.html" class="nav-link" id="wishlist-link">My Wishlist</a>
+        
+        <form id="search-form" class="search-box">
+            <input type="text" id="search-input" placeholder="Search for a movie..." required>
+            <button type="submit">Search</button>
+        </form>
+
+        <div class="auth-links" id="auth-container">
+            </div>
+    </header>
+
+    <main id="main-content">
+        <section class="movie-grid-section">
+            <h2>Search Results</h2>
+            <div id="results-container" class="movie-grid">
+                <p class="placeholder-text">Search for a movie to see results.</p>
+            </div>
+        </section>
+
+        <section class="movie-row">
+            <h2>Top Movies</h2>
+            <div class="movie-container" id="top-movies-container">
+                </div>
+        </section>
+
+        <section class="movie-row">
+            <h2>Top Series</h2>
+            <div class="movie-container" id="top-series-container">
+                </div>
+        </section>
+
+        <section class="movie-row">
+            <h2>Top TV Shows</h2>
+            <div class="movie-container" id="top-tv-shows-container">
+                </div>
+        </section>
+
+        <section class="movie-row">
+            <h2>Top Kids Shows</h2>
+            <div class="movie-container" id="top-kids-container">
+                </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Copyright © 2025 Movieverse. All Right Reserved.</p>
+    </footer>
+
+</body>
+</html>
