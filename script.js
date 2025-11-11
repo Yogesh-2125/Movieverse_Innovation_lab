@@ -2,7 +2,7 @@
 
 // !! PASTE YOUR OMDb API KEY HERE !!
 const API_KEY = 'fbf6fbed'; // <-- IT MUST BE REPLACED
-const API_URL = `http://www.omdbapi.com/?i=tt3896198&apikey=fbf6fbed`;
+const API_URL = `https://www.omdbapi.com/?i=tt3896198&apikey=fbf6fbed`;
 
 const searchForm = document.getElementById('search-form');
 const searchInput = document.getElementById('search-input');
